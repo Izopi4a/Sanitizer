@@ -1,0 +1,27 @@
+{
+    "name": "izopi4a/sanitizer",
+    "description": "Sanitize user inputs with ease",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Hristomir Kotzev",
+            "email": "izopi4a@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sanitizer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sanitizer\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    }
+}
