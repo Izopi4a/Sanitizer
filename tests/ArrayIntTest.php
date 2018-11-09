@@ -14,7 +14,7 @@
          */
         protected function getClass($value) {
 
-            $a = new ArrayInteger(null);
+            $a = new ArrayInteger();
             $a->setRawValue($value);
 
             return $a;

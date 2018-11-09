@@ -17,7 +17,7 @@
          *
          * @param null|string $variableName
          */
-        public function __construct(?string $variableName) {
+        public function __construct(?string $variableName = null) {
 
             if ($variableName === null) {
                 return;

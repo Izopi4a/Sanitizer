@@ -14,11 +14,11 @@
         protected $sanitizers = [];
         protected $data = [];
 
-        public function __construct(array $data, ?array $items) {
+        public function __construct(array $data, ?array $items = null) {
 
             $this->data = $data;
 
-            if ($items) {
+            if ($items !== null) {
                 foreach ($items AS $item) {
                     $this->add($item);
                 }
