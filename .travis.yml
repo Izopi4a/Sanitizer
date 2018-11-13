@@ -32,6 +32,7 @@ env:
   - TEST_PHP_ARGS="--show-diff"
 
 before_install:
+- sudo apt-get install -y re2c
 - export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
 - export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
 # Setting up test the environment
@@ -40,7 +41,6 @@ before_install:
 
 install:
 - composer install -q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest --ignore-platform-reqs
-- bash tests/_ci/install-re2c $RE2C_VERSION
 - bash tests/_ci/install_prereqs.sh
 - zephir generate --backend=ZendEngine3
 - cd ${TRAVIS_BUILD_DIR}/ext
