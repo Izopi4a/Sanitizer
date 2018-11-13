@@ -17,17 +17,19 @@ cache:
   timeout: 604800
   directories:
     - ${HOME}/.composer/cache
+    - ${HOME}/.local/opt
 
 branches:
   only:
     - master
 
 before_install:
-  - php -v
-  - php -m
-  - re2c --version
+  - export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
+  - export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
+  - export PHP_VERNUM="$(`phpenv which php-config` --vernum)"
 
 install:
+  - .ci/install-prereqs.sh
 
 script:
   - true  
