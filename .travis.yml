@@ -41,7 +41,7 @@ install:
   - .ci/build.sh
 
 script:
-  - cat /home/travis/.pearrc  
+  - make test
 
 after_failure:
   - .ci/after-failure.sh
