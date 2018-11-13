@@ -18,7 +18,7 @@ class Strings extends Sanitizer implements SanitizerInterface {
 
         var v = this->getRawValue();
 
-        if (null === v || is_bool(v) || is_array(v)) {
+        if (null === v || is_bool(v) || typeof v == "array") {
             return this->getDefaultValue();
         }
 

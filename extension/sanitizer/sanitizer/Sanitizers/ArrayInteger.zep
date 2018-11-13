@@ -25,14 +25,15 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
         var v = this->getRawValue(),
             max, i = 0, integers;
 
-        if false == is_array(v) {
+        if typeof v != "array" {
             return this->getDefaultValue();
         }
+
         //we ignore the keys and make a new array with 0...n keys
         let v = array_values(v);
         let max = this->maxItems > -1 ? this->maxItems : count(v);
 
-        for i in range(0, max) {
+        for i in range(0, max - 1) {
 
             if (false === isset(v[i])) {
                 break;

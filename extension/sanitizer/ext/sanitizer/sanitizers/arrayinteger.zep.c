@@ -52,9 +52,9 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayInteger) {
 PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 
 	zend_bool _2;
-	zval v, max, i, integers, _0, _1, _4, value$$4, _5$$4, _11$$4, newValues$$4, _9$$6, _12$$7;
+	zval v, max, i, integers, _0, _1, value$$4, _5$$4, _11$$4, newValues$$4, _9$$6, _12$$7;
 	zephir_fcall_cache_entry *_6 = NULL, *_7 = NULL, *_8 = NULL, *_10 = NULL, *_13 = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS, _3;
+	zend_long ZEPHIR_LAST_CALL_STATUS, _3, _4;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&v);
@@ -63,7 +63,6 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 	ZVAL_UNDEF(&integers);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&value$$4);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_11$$4);
@@ -77,7 +76,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&i);
 	ZVAL_LONG(&i, 0);
-	if (0 == Z_TYPE_P(&v) == IS_ARRAY) {
+	if (Z_TYPE_P(&v) != IS_ARRAY) {
 		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getdefaultvalue", NULL, 0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -93,14 +92,14 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 		ZEPHIR_INIT_NVAR(&max);
 		ZVAL_LONG(&max, zephir_fast_count_int(&v TSRMLS_CC));
 	}
-	ZEPHIR_CPY_WRT(&_4, &max);
+	_4 = (zephir_get_numberval(&max) - 1);
 	_3 = 0;
 	_2 = 0;
-	if (ZEPHIR_GE_LONG(&_4, _3)) {
+	if (_3 <= _4) {
 		while (1) {
 			if (_2) {
 				_3++;
-				if (!(ZEPHIR_GE_LONG(&_4, _3))) {
+				if (!(_3 <= _4)) {
 					break;
 				}
 			} else {
@@ -112,7 +111,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 				break;
 			}
 			ZEPHIR_OBS_NVAR(&value$$4);
-			zephir_array_fetch(&value$$4, &v, &i, PH_NOISY, "sanitizer/Sanitizers/ArrayInteger.zep", 41 TSRMLS_CC);
+			zephir_array_fetch(&value$$4, &v, &i, PH_NOISY, "sanitizer/Sanitizers/ArrayInteger.zep", 42 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(&integers);
 			object_init_ex(&integers, sanitizer_sanitizers_integer_ce);
 			ZVAL_NULL(&_5$$4);
