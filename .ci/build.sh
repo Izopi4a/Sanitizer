@@ -21,7 +21,7 @@ cd ${PROJECT_ROOT}/extension/sanitizer/ext
 phpize
 ./configure --with-php-config=$(phpenv which php-config) --enable-sanitizer
 
-make -j"$(getconf _NPROCESSORS_ONLN)"
+make -j"$(getconf _NPROCESSORS_ONLN)" > /dev/null 2> ../../../compile-errors.log
 make install
 
 phpenv config-add ${PROJECT_ROOT}/.ci/sanitizer.ini
