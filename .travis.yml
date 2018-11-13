@@ -19,6 +19,10 @@ cache:
     - ${HOME}/.composer/cache
     - ${HOME}/.local/opt
 
+env:
+  global:
+    - DEFAULT_COMPOSER_FLAGS="-q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest"
+
 branches:
   only:
     - master
@@ -30,6 +34,7 @@ before_install:
 
 install:
   - .ci/install-prereqs.sh
+  - travis_retry composer install
 
 script:
   - true  
