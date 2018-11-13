@@ -16,7 +16,7 @@ set -e
 ZEPHIR_PARSER_VERSION=${ZEPHIR_PARSER_VERSION:-development}
 
 git clone --depth=1 -v https://github.com/phalcon/php-zephir-parser.git -b ${ZEPHIR_PARSER_VERSION} /tmp/parser/
-cd /tmp/parser/php-zephir-parser
+cd /tmp/parser
 phpize
 ./configure
 make
