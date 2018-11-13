@@ -7,16 +7,30 @@ php:
 git:
   depth: 1
 
+addons:
+  apt:
+    packages:
+      - re2c
+
+cache:
+  apt: true
+  timeout: 604800
+  directories:
+    - ${HOME}/.composer/cache
+
 branches:
   only:
     - master
 
 before_install:
+  - php -v
+  - php -m
+  - re2c --version
 
 install:
 
 script:
-  - true
+  - true  
 
 notifications:
   email: false
