@@ -38,6 +38,7 @@ install:
   - .ci/install-prereqs.sh
   - travis_retry composer install ${DEFAULT_COMPOSER_FLAGS}
   - travis_retry composer global require ${DEFAULT_COMPOSER_FLAGS} "phalcon/zephir:${ZEPHIR_VERSION}"
+  - .ci/build.sh
 
 script:
   - cat /home/travis/.pearrc  
