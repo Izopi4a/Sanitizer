@@ -1,71 +1,55 @@
+sudo: false
+
 language: php
-
-dist: xenial
-sudo: true
-
 php:
-#- 7.1
-- 7.2
+  - 'master'
+  - '7.3'
+  - '7.2'
+  - '7.1'
 
 git:
   depth: 1
 
-branches:
-  only:
-  - master
+addons:
+  apt:
+    packages:
+      - re2c
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: 'master'
 
 cache:
   apt: true
-  timeout: 1
+  timeout: 604800
   directories:
-  - ${HOME}/.composer/cache
-  - ${HOME}/.local/opt
-  - ${HOME}/.cache/composer
+    - ${HOME}/.composer/cache
+    - ${HOME}/.local/opt
 
 env:
   global:
-  - PATH="$PATH:$HOME/bin"
-  - ZEPHIR_PARSER_VERSION="v1.1.2"
-  - RE2C_VERSION="1.0.3"
-  - REPORT_EXIT_STATUS=1
-  - NO_INTERACTION=1
-  - TEST_PHP_ARGS="--show-diff"
+    - DEFAULT_COMPOSER_FLAGS="-n --no-ansi --no-progress --dev --prefer-dist --no-suggest"
+    - ZEPHIR_VERSION="0.11.3"
+    - PATH="${HOME}/.composer/vendor/bin:${PATH}"
 
-before_install:
-- sudo apt-get install -y re2c
-- export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
-- export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
-# Setting up test the environment
-- source $TRAVIS_BUILD_DIR/tests/_ci/environment
-- export $(cut -d= -f1 $TRAVIS_BUILD_DIR/tests/_ci/environment)
+branches:
+  only:
+    - master
+    - development
 
 install:
-- composer install -q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest --ignore-platform-reqs
-- bash tests/_ci/install_prereqs.sh
-- zephir generate --backend=ZendEngine3
-- cd ${TRAVIS_BUILD_DIR}/ext
-- $(phpenv which phpize) &> /dev/null
-- ./configure --silent --with-php-config=$(phpenv which php-config) --enable-sanitizer &> /dev/null
-- make --silent -j"$(getconf _NPROCESSORS_ONLN)" &> /dev/null
-- make --silent install
-- phpenv config-add $TRAVIS_BUILD_DIR/tests/_ci/sanitizer.ini
-# Some debug info is located here
-- ls -al `$(phpenv which php-config) --extension-dir`
-- $(phpenv which php) -v
-- $(phpenv which php) -m
-- $(phpenv which php) --ri sanitizer
-
-#before_script:
-#- @echo "hi"
-
+  - .ci/install-prereqs.sh
+  - travis_retry composer install ${DEFAULT_COMPOSER_FLAGS}
+  - travis_retry composer global require ${DEFAULT_COMPOSER_FLAGS} "phalcon/zephir:${ZEPHIR_VERSION}"
+  - .ci/build.sh
 
 script:
-- cd $TRAVIS_BUILD_DIR
-- make test
+  - make help
+  - make test PHP=$(phpenv which php)
 
-# Uncomment for debug purposes
-# after_failure:
-#  - bash tests/_ci/after_failure.sh
+after_failure:
+  - .ci/after-failure.sh
 
 notifications:
   email: false
