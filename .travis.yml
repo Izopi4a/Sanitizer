@@ -4,7 +4,7 @@ dist: trusty
 sudo: false
 
 php:
-- 7.1
+#- 7.1
 - 7.2
 
 git:
@@ -26,7 +26,7 @@ env:
   global:
   - PATH="$PATH:$HOME/bin"
   - ZEPHIR_PARSER_VERSION="v1.1.2"
-  - RE2C_VERSION="1.0.3"
+  - RE2C_VERSION="1.1.1"
   - REPORT_EXIT_STATUS=1
   - NO_INTERACTION=1
   - TEST_PHP_ARGS="--show-diff"
@@ -39,11 +39,9 @@ before_install:
 - export $(cut -d= -f1 $TRAVIS_BUILD_DIR/tests/_ci/environment)
 
 install:
-- composer install -q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest #--ignore-platform-reqs
-- bash tests/_ci/install_prereqs.sh
+- composer install -q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest --ignore-platform-reqs
 - bash tests/_ci/install-re2c $RE2C_VERSION
-- bash tests/_ci/install_zephir_parser.sh
-- bash tests/_ci/install_zephir.sh
+- bash tests/_ci/install_prereqs.sh
 - zephir generate --backend=ZendEngine3
 - cd ${TRAVIS_BUILD_DIR}/ext
 - $(phpenv which phpize) &> /dev/null
@@ -63,7 +61,7 @@ install:
 
 script:
 - cd $TRAVIS_BUILD_DIR
-- $(phpenv which php) ./vendor/bin/phpunit
+- make test
 
 # Uncomment for debug purposes
 # after_failure:
