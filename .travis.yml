@@ -10,17 +10,17 @@ php:
 git:
   depth: 1
 
+branches:
+  only:
+  - master
+
 cache:
-  # See: https://github.com/travis-ci/travis-ci/issues/8714
-#  edge: true
-#  apt: true
-#  ccache: true
+  apt: true
   timeout: 1
   directories:
-  - .temp
-  - $HOME/.composer/cache
-  - $HOME/.local/opt/re2c
-  - $HOME/.cache/re2c
+  - ${HOME}/.composer/cache
+  - ${HOME}/.local/opt
+  - ${HOME}/.cache/composer
 
 env:
   global:
