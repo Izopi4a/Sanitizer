@@ -2,7 +2,10 @@ sudo: false
 
 language: php
 php:
-  - 7.1
+  - 'master'
+  - '7.3'
+  - '7.2'
+  - '7.1'
 
 git:
   depth: 1
@@ -11,6 +14,11 @@ addons:
   apt:
     packages:
       - re2c
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: 'master'
 
 cache:
   apt: true
@@ -41,6 +49,7 @@ install:
   - .ci/build.sh
 
 script:
+  - make help
   - make test PHP=$(phpenv which php)
 
 after_failure:
