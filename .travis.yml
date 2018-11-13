@@ -1,0 +1,76 @@
+language: php
+
+dist: trusty
+sudo: false
+
+php:
+- 7.1
+- 7.2
+
+git:
+  depth: 1
+
+cache:
+  # See: https://github.com/travis-ci/travis-ci/issues/8714
+  edge: true
+  apt: true
+  ccache: true
+  timeout: 604800
+  directories:
+  - .temp
+  - $HOME/.composer/cache
+  - $HOME/.local/opt/re2c
+  - $HOME/.cache/re2c
+
+env:
+  global:
+  - PATH="$PATH:$HOME/bin"
+  - ZEPHIR_PARSER_VERSION="v1.1.2"
+  - RE2C_VERSION="1.0.3"
+  - REPORT_EXIT_STATUS=1
+  - NO_INTERACTION=1
+  - TEST_PHP_ARGS="--show-diff"
+
+before_install:
+- export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
+- export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
+# Setting up test the environment
+- source $TRAVIS_BUILD_DIR/tests/_ci/environment
+- export $(cut -d= -f1 $TRAVIS_BUILD_DIR/tests/_ci/environment)
+
+install:
+- composer install -q -n --no-ansi --no-progress --dev --prefer-dist --no-suggest #--ignore-platform-reqs
+- bash tests/_ci/install_prereqs.sh
+- bash tests/_ci/install-re2c $RE2C_VERSION
+- bash tests/_ci/install_zephir_parser.sh
+- bash tests/_ci/install_zephir.sh
+- zephir generate --backend=ZendEngine3
+- cd ${TRAVIS_BUILD_DIR}/ext
+- $(phpenv which phpize) &> /dev/null
+- ./configure --silent --with-php-config=$(phpenv which php-config) --enable-sanitizer &> /dev/null
+- make --silent -j"$(getconf _NPROCESSORS_ONLN)" &> /dev/null
+- make --silent install
+- phpenv config-add $TRAVIS_BUILD_DIR/tests/_ci/sanitizer.ini
+# Some debug info is located here
+- ls -al `$(phpenv which php-config) --extension-dir`
+- $(phpenv which php) -v
+- $(phpenv which php) -m
+- $(phpenv which php) --ri sanitizer
+
+#before_script:
+#- @echo "hi"
+
+
+script:
+- cd $TRAVIS_BUILD_DIR
+- $(phpenv which php) ./vendor/bin/phpunit
+
+# Uncomment for debug purposes
+# after_failure:
+#  - bash tests/_ci/after_failure.sh
+
+notifications:
+  # Stop spam me. I already live on Travis CI and GitHub
+  email:
+    on_success: never
+    on_failure: never
