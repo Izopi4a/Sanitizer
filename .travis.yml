@@ -68,7 +68,4 @@ script:
 #  - bash tests/_ci/after_failure.sh
 
 notifications:
-  # Stop spam me. I already live on Travis CI and GitHub
-  email:
-    on_success: never
-    on_failure: never
+  email: false
