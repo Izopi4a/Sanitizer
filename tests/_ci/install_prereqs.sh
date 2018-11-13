@@ -11,7 +11,7 @@ pushd /tmp
 # | installs latest zephir parser extension
 # |
 
-git clone --depth=1 -v https://github.com/phalcon/php-zephir-parser.git -b ${ZEPHIR_PARSER_VERSION}
+git clone --depth=1 https://github.com/phalcon/php-zephir-parser.git
 cd php-zephir-parser
 phpize
 ./configure
