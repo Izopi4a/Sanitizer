@@ -31,16 +31,12 @@ env:
   global:
     - DEFAULT_COMPOSER_FLAGS="-n --no-ansi --no-progress --dev --prefer-dist --no-suggest"
     - ZEPHIR_VERSION="0.11.3"
-    - PATH="${HOME}/bin:${HOME}/.composer/vendor/bin:${PATH}"
+    - PATH="${HOME}/.composer/vendor/bin:${PATH}"
 
 branches:
   only:
     - master
-
-before_install:
-  - export PHP_MAJOR="$(php -r 'echo phpversion();' | cut -d '.' -f 1)"
-  - export PHP_MINOR="$(php -r 'echo phpversion();' | cut -d '.' -f 2)"
-  - export PHP_VERNUM="$(`phpenv which php-config` --vernum)"
+    - development
 
 install:
   - .ci/install-prereqs.sh
