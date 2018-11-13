@@ -30,8 +30,8 @@ branches:
     - master
 
 before_install:
-  - export PHP_MAJOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 1)"
-  - export PHP_MINOR="$(`phpenv which php` -r 'echo phpversion();' | cut -d '.' -f 2)"
+  - export PHP_MAJOR="$(php -r 'echo phpversion();' | cut -d '.' -f 1)"
+  - export PHP_MINOR="$(php -r 'echo phpversion();' | cut -d '.' -f 2)"
   - export PHP_VERNUM="$(`phpenv which php-config` --vernum)"
 
 install:
@@ -41,7 +41,7 @@ install:
   - .ci/build.sh
 
 script:
-  - make test
+  - make test PHP=$(phpenv which php)
 
 after_failure:
   - .ci/after-failure.sh
