@@ -42,16 +42,16 @@ install:
   - .ci/install-prereqs.sh
   - travis_retry composer install ${DEFAULT_COMPOSER_FLAGS}
   - travis_retry composer global require ${DEFAULT_COMPOSER_FLAGS} "phalcon/zephir:${ZEPHIR_VERSION}"
-#  - .ci/build.sh
+  - .ci/build.sh
 
 script:
-  - make help
-  - mv src src_
-  - make test PHP=$(phpenv which php)
-  - mv src_ src
-  - phpenv config-rm .ci/sanitizer.ini
-  - $(phpenv which php) -m
-  - make test PHP=$(phpenv which php)
+  - php -m | grep sanitizer
+#  - mv src src_
+#  - make test PHP=$(phpenv which php)
+#  - mv src_ src
+#  - phpenv config-rm .ci/sanitizer.ini
+#  - $(phpenv which php) -m
+#  - make test PHP=$(phpenv which php)
 
 after_failure:
   - .ci/after-failure.sh
