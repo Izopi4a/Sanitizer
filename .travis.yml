@@ -48,8 +48,8 @@ install:
 script:
   - make help
   - make test PHP=$(phpenv which php)
-  - echo $PROJECT_ROOT
-  - ls -la $PROJECT_ROOT
+  - echo $TRAVIS_BUILD_DIR
+  - ls -la $TRAVIS_BUILD_DIR
 
 after_failure:
   - .ci/after-failure.sh
