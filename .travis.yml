@@ -46,12 +46,12 @@ install:
 
 script:
   - make help
-  - phpenv config-remove .ci/sanitizer.ini
-  - make test PHP=$(phpenv which php)
   - mv src src_
-  - phpenv config-add .ci/sanitizer.ini
   - make test PHP=$(phpenv which php)
   - mv src_ src
+  - phpenv config-remove .ci/sanitizer.ini
+  - $(phpenv which php) -m
+  - make test PHP=$(phpenv which php)
 
 after_failure:
   - .ci/after-failure.sh
