@@ -32,7 +32,6 @@ env:
     - DEFAULT_COMPOSER_FLAGS="-n --no-ansi --no-progress --dev --prefer-dist --no-suggest"
     - ZEPHIR_VERSION="0.11.3"
     - PATH="${HOME}/.composer/vendor/bin:${PATH}"
-    - PROJECT_ROOT=$(readlink -enq "$(dirname $0)/../")
 
 branches:
   only:
@@ -47,9 +46,12 @@ install:
 
 script:
   - make help
+  - phpenv config-remove .ci/sanitizer.ini
   - make test PHP=$(phpenv which php)
-  - echo $TRAVIS_BUILD_DIR
-  - ls -la $TRAVIS_BUILD_DIR
+  - mv src src_
+  - phpenv config-add .ci/sanitizer.ini
+  - make test PHP=$(phpenv which php)
+  - mv src_ src
 
 after_failure:
   - .ci/after-failure.sh
