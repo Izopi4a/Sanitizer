@@ -2,10 +2,10 @@ sudo: false
 
 language: php
 php:
-  - 'master'
-  - '7.3'
+#  - 'master'
+#  - '7.3'
   - '7.2'
-  - '7.1'
+#  - '7.1'
 
 git:
   depth: 1
@@ -43,7 +43,9 @@ install:
   - .ci/install-prereqs.sh
   - travis_retry composer install ${DEFAULT_COMPOSER_FLAGS}
   - travis_retry composer global require ${DEFAULT_COMPOSER_FLAGS} "phalcon/zephir:${ZEPHIR_VERSION}"
-  - .ci/build.sh
+#  - .ci/build.sh
+  - echo $PROJECT_ROOT
+  - ls -la $PROJECT_ROOT
 
 script:
   - make help
