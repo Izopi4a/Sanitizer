@@ -2,6 +2,7 @@ ROOT_DIR = $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 SHELL ?= /bin/bash
 PHP ?= /usr/bin/php
+INI_FILE ?= /etc/php/7.2/cli/php.ini
 ARGS = $(filter-out $@,$(MAKECMDGOALS))
 
 APP_NAME = Sanitizer
@@ -30,6 +31,14 @@ endif
 .PHONY: test
 test: ## Executes tests
 		$(PHP) ./vendor/bin/phpunit
+
+.PHONY: test-extension
+test-extension: ## Executes tests for extension by first moving src dir
+		sudo sed -i -e 's/;extension=sanitizer.so/extension=sanitizer.so/g' $(INI_FILE)
+		mv src src_
+		$(PHP) ./vendor/bin/phpunit
+		mv src_ src
+		sudo sed -i -e 's/extension=sanitizer.so/;extension=sanitizer.so/g' $(INI_FILE)
 
 .PHONY: vendor-install
 vendor-install: ## Install PHP dependencies
