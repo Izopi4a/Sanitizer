@@ -45,14 +45,14 @@ install:
   - .ci/build.sh
 
 script:
-  - $(which php) -m | grep sanitizer
+  #test extension
+  - mv src src_
   - make test PHP=$(which php)
-#  - mv src src_
-#  - make test PHP=$(phpenv which php)
-#  - mv src_ src
-#  - phpenv config-rm .ci/sanitizer.ini
-#  - $(phpenv which php) -m
-#  - make test PHP=$(phpenv which php)
+  # disable extension and test php
+  - phpenv config-rm .ci/sanitizer.ini
+  - php -m | grep sanitizer
+  - mv src_ src
+  - make test PHP=$(which php)
 
 after_failure:
   - .ci/after-failure.sh
