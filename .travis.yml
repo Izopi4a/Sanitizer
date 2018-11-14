@@ -49,7 +49,7 @@ script:
   - mv src src_
   - make test PHP=$(phpenv which php)
   - mv src_ src
-  - phpenv config-remove .ci/sanitizer.ini
+  - phpenv config-rm .ci/sanitizer.ini
   - $(phpenv which php) -m
   - make test PHP=$(phpenv which php)
 
