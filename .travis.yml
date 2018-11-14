@@ -49,7 +49,7 @@ script:
   - mv src src_
   - make test PHP=$(which php)
   # disable extension and test php
-  - phpenv config-rm .ci/sanitizer.ini
+  - phpenv config-rm sanitizer.ini
   - php -m | grep sanitizer
   - mv src_ src
   - make test PHP=$(which php)
