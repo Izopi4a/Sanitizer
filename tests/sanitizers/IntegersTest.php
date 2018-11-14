@@ -7,61 +7,63 @@
 
     final class IntegersTest extends TestCase {
 
+        /**
+         * @param $value
+         *
+         * @return Integer
+         */
+        protected function getClass($value) {
+
+            $b = new Integer();
+            $b->setRawValue($value);
+
+            return $b;
+        }
+
         public function testNullCast() :void {
 
-            $integers = new Integer(null);
-            $integers->setRawValue(null);
+            $integers = $this->getClass(null);
 
             $this->assertEquals(0, $integers->getValue());
         }
 
         public function testBoolCast() :void {
 
-            $integers = new Integer(null);
-            $integers->setRawValue(false);
-
+            $integers = $this->getClass(false);
             $this->assertEquals(0, $integers->getValue());
             unset($integers);
 
-            $integers = new Integer(null);
-            $integers->setRawValue(true);
+            $integers = $this->getClass(true);
 
             $this->assertEquals(0, $integers->getValue());
         }
 
         public function testStringCast() :void {
 
-            $integers = new Integer(null);
-            $integers->setRawValue("1");
+            $integers = $this->getClass("1");
 
             $this->assertEquals(1, $integers->getValue());
             unset($integers);
 
-            $integers = new Integer(null);
-            $integers->setRawValue("asd");
+            $integers = $this->getClass("asd");
 
             $this->assertEquals(0, $integers->getValue());
         }
 
         public function testArrayCast() :void {
 
-            $integers = new Integer(null);
-            $integers->setRawValue([]);
+            $integers = $this->getClass([]);
 
             $this->assertEquals(0, $integers->getValue());
             unset($integers);
 
-
-            $integers = new Integer(null);
-            $integers->setRawValue([1 => 2, "c" => 'asda']);
-
+            $integers = $this->getClass([1 => 2, "c" => 'asda']);
             $this->assertEquals(0, $integers->getValue());
         }
 
         public function testRandomCast() :void {
 
-            $integers = new Integer(null);
-            $integers->setRawValue("\\");
+            $integers = $this->getClass("\\");
 
             $this->assertEquals(0, $integers->getValue());
         }

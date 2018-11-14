@@ -32,6 +32,7 @@ env:
     - DEFAULT_COMPOSER_FLAGS="-n --no-ansi --no-progress --dev --prefer-dist --no-suggest"
     - ZEPHIR_VERSION="0.11.3"
     - PATH="${HOME}/.composer/vendor/bin:${PATH}"
+    - PROJECT_ROOT=$(readlink -enq "$(dirname $0)/../")
 
 branches:
   only:

@@ -25,7 +25,7 @@
 
         public function testMinLength(): void {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['short']);
             $strings->setMinLength(5);
 
@@ -41,7 +41,7 @@
 
         public function testMaxLength(): void {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['long']);
             $strings->setMaxLength(10);
 
@@ -58,7 +58,7 @@
 
         public function testTrim() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue("a ");
 
             $this->assertEquals($strings->getValue(), "a", "trim is not working");
@@ -66,7 +66,7 @@
 
         public function testStripSlashes() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue("\\a");
 
             $this->assertEquals($strings->getValue(), "a", "stripshases is not working");
@@ -74,7 +74,7 @@
 
         public function testEscaping() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['quotes']);
 
             $this->assertEquals($strings->getValue(), "abc%de", "quotes trimming is not working");
@@ -82,7 +82,7 @@
 
         public function testHtml() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['html']);
 
             $this->assertEquals($strings->getValue(), "ab", "html test is not working");
@@ -90,7 +90,7 @@
 
         public function testNull() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['null']);
 
             $this->assertEquals($strings->getValue(), "");
@@ -98,7 +98,7 @@
 
         public function testBool() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['false']);
 
             $this->assertEquals($strings->getValue(), "");
@@ -106,7 +106,7 @@
 
         public function testArray() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['array']);
 
             $this->assertEquals($strings->getValue(), "");
@@ -114,7 +114,7 @@
 
         public function testArrayFilled() {
 
-            $strings = new Strings(null);
+            $strings = new Strings();
             $strings->setRawValue($this->data['arrayFilled']);
 
             $this->assertEquals($strings->getValue(), "");

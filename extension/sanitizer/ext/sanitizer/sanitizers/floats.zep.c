@@ -33,6 +33,7 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_Floats) {
 	zend_declare_property_long(sanitizer_sanitizers_floats_ce, SL("maxDecimals"), 2, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_class_implements(sanitizer_sanitizers_floats_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
+	zend_class_implements(sanitizer_sanitizers_floats_ce TSRMLS_CC, 1, sanitizer_sizeinterface_ce);
 	return SUCCESS;
 
 }

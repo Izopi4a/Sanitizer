@@ -3,9 +3,10 @@
     namespace Sanitizer\Sanitizers;
 
     use Sanitizer\SanitizerInterface;
+    use Sanitizer\SizeInterface;
     use Sanitizer\Sanitizer;
 
-    class Integer extends Sanitizer implements SanitizerInterface {
+    class Integer extends Sanitizer implements SanitizerInterface, SizeInterface {
 
         protected $min = null;
         protected $max = null;

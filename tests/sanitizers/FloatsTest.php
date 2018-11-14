@@ -14,7 +14,7 @@
          */
         protected function getClass($value) {
 
-            $b = new Floats(null);
+            $b = new Floats();
             $b->setRawValue($value);
 
             return $b;
