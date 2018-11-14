@@ -2,10 +2,10 @@ sudo: false
 
 language: php
 php:
-#  - 'master'
-#  - '7.3'
+  - 'master'
+  - '7.3'
   - '7.2'
-#  - '7.1'
+  - '7.1'
 
 git:
   depth: 1
@@ -50,7 +50,7 @@ script:
   - make test PHP=$(which php)
   # disable extension and test php
   - phpenv config-rm sanitizer.ini
-  - php -m | grep sanitizer
+#  - php -m | grep sanitizer
   - mv src_ src
   - make test PHP=$(which php)
 
