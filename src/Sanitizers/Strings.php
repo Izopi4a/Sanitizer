@@ -2,10 +2,11 @@
 
     namespace Sanitizer\Sanitizers;
 
+    use Sanitizer\LengthInterface;
     use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class Strings extends Sanitizer implements SanitizerInterface {
+    class Strings extends Sanitizer implements SanitizerInterface, LengthInterface {
 
         protected $minLength = null;
         protected $maxLength = null;

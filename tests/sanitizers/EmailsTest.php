@@ -14,7 +14,7 @@
          */
         protected function getClass($value) {
 
-            $e = new Emails(null);
+            $e = new Emails();
             $e->setRawValue($value);
 
             return $e;

@@ -51,31 +51,28 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayInteger) {
  */
 PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 
-	zend_bool _2;
-	zval v, max, i, integers, _0, _1, value$$4, _5$$4, _11$$4, newValues$$4, _9$$6, _12$$7;
-	zephir_fcall_cache_entry *_6 = NULL, *_7 = NULL, *_8 = NULL, *_10 = NULL, *_13 = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS, _3, _4;
+	zend_bool _3;
+	zval v, integers, _0, _1, _2, value$$4, _6$$4, _12$$4, newValues$$4, _10$$6, _13$$7;
+	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL, *_9 = NULL, *_11 = NULL, *_14 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, max = 0, _4, _5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&v);
-	ZVAL_UNDEF(&max);
-	ZVAL_UNDEF(&i);
 	ZVAL_UNDEF(&integers);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&value$$4);
-	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_11$$4);
+	ZVAL_UNDEF(&_6$$4);
+	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&newValues$$4);
-	ZVAL_UNDEF(&_9$$6);
-	ZVAL_UNDEF(&_12$$7);
+	ZVAL_UNDEF(&_10$$6);
+	ZVAL_UNDEF(&_13$$7);
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&v, this_ptr, "getrawvalue", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&i);
-	ZVAL_LONG(&i, 0);
 	if (Z_TYPE_P(&v) != IS_ARRAY) {
 		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getdefaultvalue", NULL, 0);
 		zephir_check_call_status();
@@ -84,57 +81,58 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 	ZEPHIR_CALL_FUNCTION(&_0, "array_values", NULL, 1, &v);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&v, &_0);
-	zephir_read_property(&_1, this_ptr, SL("maxItems"), PH_NOISY_CC | PH_READONLY);
-	if (ZEPHIR_GT_LONG(&_1, -1)) {
-		ZEPHIR_OBS_VAR(&max);
-		zephir_read_property(&max, this_ptr, SL("maxItems"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(&_1);
+	zephir_read_property(&_2, this_ptr, SL("maxItems"), PH_NOISY_CC | PH_READONLY);
+	if (ZEPHIR_GT_LONG(&_2, -1)) {
+		ZEPHIR_OBS_NVAR(&_1);
+		zephir_read_property(&_1, this_ptr, SL("maxItems"), PH_NOISY_CC);
 	} else {
-		ZEPHIR_INIT_NVAR(&max);
-		ZVAL_LONG(&max, zephir_fast_count_int(&v TSRMLS_CC));
+		ZEPHIR_INIT_NVAR(&_1);
+		ZVAL_LONG(&_1, zephir_fast_count_int(&v TSRMLS_CC));
 	}
-	_4 = (zephir_get_numberval(&max) - 1);
+	max = zephir_get_numberval(&_1);
+	_5 = (max - 1);
+	_4 = 0;
 	_3 = 0;
-	_2 = 0;
-	if (_3 <= _4) {
+	if (_4 <= _5) {
 		while (1) {
-			if (_2) {
-				_3++;
-				if (!(_3 <= _4)) {
+			if (_3) {
+				_4++;
+				if (!(_4 <= _5)) {
 					break;
 				}
 			} else {
-				_2 = 1;
+				_3 = 1;
 			}
-			ZEPHIR_INIT_NVAR(&i);
-			ZVAL_LONG(&i, _3);
-			if (0 == zephir_array_isset(&v, &i)) {
+			i = _4;
+			if (0 == zephir_array_isset_long(&v, i)) {
 				break;
 			}
 			ZEPHIR_OBS_NVAR(&value$$4);
-			zephir_array_fetch(&value$$4, &v, &i, PH_NOISY, "sanitizer/Sanitizers/ArrayInteger.zep", 42 TSRMLS_CC);
+			zephir_array_fetch_long(&value$$4, &v, i, PH_NOISY, "sanitizer/Sanitizers/ArrayInteger.zep", 44 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(&integers);
 			object_init_ex(&integers, sanitizer_sanitizers_integer_ce);
-			ZVAL_NULL(&_5$$4);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "__construct", &_6, 2, &_5$$4);
+			ZVAL_NULL(&_6$$4);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "__construct", &_7, 2, &_6$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setrawvalue", &_7, 3, &value$$4);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "setrawvalue", &_8, 3, &value$$4);
 			zephir_check_call_status();
-			ZVAL_BOOL(&_5$$4, 1);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setnullasdefault", &_8, 4, &_5$$4);
+			ZVAL_BOOL(&_6$$4, 1);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "setnullasdefault", &_9, 4, &_6$$4);
 			zephir_check_call_status();
-			zephir_read_property(&_5$$4, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
-			if (Z_TYPE_P(&_5$$4) != IS_NULL) {
-				zephir_read_property(&_9$$6, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_10, 5, &_9$$6);
+			zephir_read_property(&_6$$4, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
+			if (Z_TYPE_P(&_6$$4) != IS_NULL) {
+				zephir_read_property(&_10$$6, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_11, 5, &_10$$6);
 				zephir_check_call_status();
 			}
-			zephir_read_property(&_11$$4, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
-			if (Z_TYPE_P(&_11$$4) != IS_NULL) {
-				zephir_read_property(&_12$$7, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_10, 5, &_12$$7);
+			zephir_read_property(&_12$$4, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
+			if (Z_TYPE_P(&_12$$4) != IS_NULL) {
+				zephir_read_property(&_13$$7, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_11, 5, &_13$$7);
 				zephir_check_call_status();
 			}
-			ZEPHIR_CALL_METHOD(&newValues$$4, &integers, "getvalue", &_13, 6);
+			ZEPHIR_CALL_METHOD(&newValues$$4, &integers, "getvalue", &_14, 6);
 			zephir_check_call_status();
 			if (Z_TYPE_P(&newValues$$4) != IS_NULL) {
 				zephir_update_property_array_append(this_ptr, SL("val"), &newValues$$4 TSRMLS_CC);

@@ -24,8 +24,11 @@
 
 
 zend_class_entry *sanitizer_sanitizerinterface_ce;
+zend_class_entry *sanitizer_sizeinterface_ce;
+zend_class_entry *sanitizer_casterinterface_ce;
+zend_class_entry *sanitizer_lengthinterface_ce;
 zend_class_entry *sanitizer_sanitizer_ce;
-zend_class_entry *sanitizer_caster_ce;
+zend_class_entry *sanitizer_iteratorcaster_ce;
 zend_class_entry *sanitizer_sanitizers_arrayinteger_ce;
 zend_class_entry *sanitizer_sanitizers_booleans_ce;
 zend_class_entry *sanitizer_sanitizers_emails_ce;
@@ -44,8 +47,11 @@ static PHP_MINIT_FUNCTION(sanitizer)
 	REGISTER_INI_ENTRIES();
 	zephir_module_init();
 	ZEPHIR_INIT(Sanitizer_SanitizerInterface);
+	ZEPHIR_INIT(Sanitizer_SizeInterface);
+	ZEPHIR_INIT(Sanitizer_CasterInterface);
+	ZEPHIR_INIT(Sanitizer_LengthInterface);
 	ZEPHIR_INIT(Sanitizer_Sanitizer);
-	ZEPHIR_INIT(Sanitizer_Caster);
+	ZEPHIR_INIT(Sanitizer_IteratorCaster);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_ArrayInteger);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Booleans);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Emails);

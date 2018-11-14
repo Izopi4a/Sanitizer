@@ -23,7 +23,9 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
     public function getValue() -> array {
 
         var v = this->getRawValue(),
-            max, i = 0, integers;
+            integers;
+
+        int i, max;
 
         if typeof v != "array" {
             return this->getDefaultValue();

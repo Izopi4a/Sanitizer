@@ -7,7 +7,7 @@ namespace Sanitizer;
  * @package Sanitizer
  */
 
-class Caster {
+class IteratorCaster implements CasterInterface {
 
     protected sanitizers = [];
     protected data = [];

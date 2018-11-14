@@ -14,7 +14,7 @@
          */
         protected function getClass($value) {
 
-            $b = new Booleans(null);
+            $b = new Booleans();
             $b->setRawValue($value);
 
             return $b;
