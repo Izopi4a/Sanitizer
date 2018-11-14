@@ -45,8 +45,8 @@ install:
   - .ci/build.sh
 
 script:
-  - $(phpenv which php) -m | grep sanitizer
-  - make test PHP=$(phpenv which php)
+  - $(which php) -m | grep sanitizer
+  - make test PHP=$(which php)
 #  - mv src src_
 #  - make test PHP=$(phpenv which php)
 #  - mv src_ src
