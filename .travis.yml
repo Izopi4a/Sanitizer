@@ -44,12 +44,12 @@ install:
   - travis_retry composer install ${DEFAULT_COMPOSER_FLAGS}
   - travis_retry composer global require ${DEFAULT_COMPOSER_FLAGS} "phalcon/zephir:${ZEPHIR_VERSION}"
 #  - .ci/build.sh
-  - echo $PROJECT_ROOT
-  - ls -la $PROJECT_ROOT
 
 script:
   - make help
   - make test PHP=$(phpenv which php)
+  - echo $PROJECT_ROOT
+  - ls -la $PROJECT_ROOT
 
 after_failure:
   - .ci/after-failure.sh
