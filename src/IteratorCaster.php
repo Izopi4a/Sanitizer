@@ -14,7 +14,7 @@
         protected $sanitizers = [];
         protected $data = [];
 
-        public function __construct(\Iterator $data, ?array $items = null) {
+        public function __construct(iterable $data, ?array $items = null) {
 
             $this->data = $data;
 

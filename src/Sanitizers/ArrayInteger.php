@@ -49,7 +49,7 @@
                     $integers->setMaximum($this->max);
                 }
                 if ($this->min !== null) {
-                    $integers->setMaximum($this->min);
+                    $integers->setMinimum($this->min);
                 }
 
                 $newValues = $integers->getValue();

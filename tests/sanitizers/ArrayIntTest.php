@@ -35,6 +35,14 @@
             $this->assertEquals($array->getValue(), [1,2]);
         }
 
+        public function testManyMaxItems() : void {
+
+            $array = $this->getClass([1,2,3,4]);
+            $array->setMaxItems(10);
+
+            $this->assertEquals($array->getValue(), [1,2,3,4]);
+        }
+
         public function testNull() : void {
 
             $array = $this->getClass(null);
@@ -63,5 +71,31 @@
 
             $array = $this->getClass(true);
             $this->assertEquals($array->getValue(), []);
+        }
+
+        public function testMaxValue() : void {
+
+            $array = $this->getClass([
+                1,12,15
+            ]);
+            $array->setMaximum(10);
+            $v = $array->getValue();
+
+            $this->assertEquals(1, count($v));
+            $this->assertEquals([1], $v);
+
+        }
+
+        public function testMinValue() : void {
+
+            $array = $this->getClass([
+                1,12,15
+            ]);
+            $array->setMinimum(10);
+            $v = $array->getValue();
+
+            $this->assertEquals(2, count($v));
+            $this->assertEquals([12, 15], $v);
+
         }
     }

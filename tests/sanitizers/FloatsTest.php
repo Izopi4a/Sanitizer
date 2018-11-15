@@ -95,4 +95,46 @@
             $this->assertEquals($floats->getValue(), 0.00);
         }
 
+        public function testMaxDecimals() : void {
+
+            $floats = $this->getClass(1.123456789);
+            $floats->setMaxDecimals(2);
+
+            $this->assertEquals($floats->getValue(), 1.12);
+        }
+
+        public function testMin() : void {
+
+            $floats = $this->getClass(1.123456789);
+            $floats->setMaxDecimals(2);
+            $floats->setMinimum(1);
+
+            $this->assertEquals($floats->getValue(), 0.00);
+        }
+
+        public function testMax() : void {
+
+            $floats = $this->getClass(1.123456789);
+            $floats->setMaxDecimals(2);
+            $floats->setMaximum(2);
+
+            $this->assertEquals($floats->getValue(), 1.12);
+        }
+
+        public function testMax2() : void {
+
+            $floats = $this->getClass(1.123456789);
+            $floats->setMaximum(1);
+
+            $this->assertEquals($floats->getValue(), 0.00);
+        }
+
+        public function testNullAsDefault() : void {
+
+            $floats = $this->getClass(0);
+            $floats->setNullAsDefault(true);
+
+            $this->assertNull($floats->getValue());
+        }
+
     }

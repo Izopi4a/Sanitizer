@@ -12,7 +12,7 @@ class IteratorCaster implements CasterInterface {
     protected sanitizers = [];
     protected data = [];
 
-    public function __construct(array! data, array items) {
+    public function __construct(iterable data, array items) {
 
         let this->data = data;
 

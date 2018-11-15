@@ -68,4 +68,13 @@
             $this->assertEquals(0, $integers->getValue());
         }
 
+
+        public function testZero() :void {
+
+            $integers = $this->getClass(0);
+            $integers->setNullAsDefault(true);
+
+            $this->assertNull($integers->getValue());
+        }
+
     }
