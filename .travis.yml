@@ -47,12 +47,12 @@ install:
 script:
   #test extension
   - mv src src_
-  - ./vendor/bin/phpcs
+  - ./vendor/bin/phpunit
   # disable extension and test php
   - phpenv config-rm sanitizer.ini
 #  - php -m | grep sanitizer
   - mv src_ src
-  - ./vendor/bin/phpcs
+  - ./vendor/bin/phpunit
 
 after_failure:
   - .ci/after-failure.sh
