@@ -51,7 +51,7 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
                 integers->setMaximum(this->max);
             }
             if (this->min !== null) {
-                integers->this->setMinimum(this->min);
+                integers->setMinimum(this->min);
             }
 
             var newValues = integers->getValue();
