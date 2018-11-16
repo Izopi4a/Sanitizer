@@ -12,10 +12,10 @@ class IteratorCaster implements CasterInterface {
     protected sanitizers = [];
     protected data = [];
 
-    public function __construct(var data, array items) {
+    public function __construct(var data, array items = null) {
 
-        if typeof data != "array" {
-            throw new \Exception("fix me");
+        if typeof data != "array" && is_iterable(data) {
+            throw new \Exception("data must be array or other iterable");
         }
 
         let this->data = data;

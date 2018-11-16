@@ -8,9 +8,9 @@ PHP_METHOD(Sanitizer_IteratorCaster, add);
 PHP_METHOD(Sanitizer_IteratorCaster, getData);
 zend_object *zephir_init_properties_Sanitizer_IteratorCaster(zend_class_entry *class_type TSRMLS_DC);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_iteratorcaster___construct, 0, 0, 2)
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-	ZEND_ARG_ARRAY_INFO(0, items, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_iteratorcaster___construct, 0, 0, 1)
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_ARRAY_INFO(0, items, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_iteratorcaster_add, 0, 0, 1)
