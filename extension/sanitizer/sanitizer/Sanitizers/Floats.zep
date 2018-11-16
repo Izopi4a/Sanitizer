@@ -30,8 +30,7 @@ class Floats extends Sanitizer implements SanitizerInterface, SizeInterface {
 
         let this->val = round(floatval(v), this->maxDecimals);
 
-
-        if (this->val === 0.00) {
+        if intval(this->val) === 0 {
             return this->getDefaultValue();
         }
 
@@ -65,7 +64,7 @@ class Floats extends Sanitizer implements SanitizerInterface, SizeInterface {
      */
     protected function checkMin()-> bool {
 
-        return this->min <= this->val;
+        return this->val <= this->min;
     }
 
     /**

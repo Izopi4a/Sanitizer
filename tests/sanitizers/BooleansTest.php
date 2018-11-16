@@ -92,4 +92,28 @@
 
             $this->assertFalse($bool->getValue());
         }
+
+        public function testStrings() : void {
+
+            $bool = $this->getClass('true');
+
+            $this->assertTrue($bool->getValue());
+            unset($bool);
+
+            $bool = $this->getClass('false');
+
+            $this->assertFalse($bool->getValue());
+        }
+
+        public function testUnchanged() : void {
+
+            $bool = $this->getClass(true);
+
+            $this->assertTrue($bool->getValue());
+            unset($bool);
+
+            $bool = $this->getClass(false);
+
+            $this->assertFalse($bool->getValue());
+        }
     }

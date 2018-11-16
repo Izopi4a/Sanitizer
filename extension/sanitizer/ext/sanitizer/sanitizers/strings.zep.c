@@ -168,10 +168,10 @@ PHP_METHOD(Sanitizer_Sanitizers_Strings, trim) {
 	zephir_fast_str_replace(&_0, &_1, &_2, &value TSRMLS_CC);
 	zephir_get_strval(&value, &_0);
 	ZVAL_LONG(&_3, 513);
-	ZEPHIR_CALL_FUNCTION(&_4, "filter_var", NULL, 7, &value, &_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "filter_var", NULL, 9, &value, &_3);
 	zephir_check_call_status();
 	zephir_get_strval(&value, &_4);
-	ZEPHIR_CALL_FUNCTION(&_5, "strip_tags", NULL, 10, &value);
+	ZEPHIR_CALL_FUNCTION(&_5, "strip_tags", NULL, 12, &value);
 	zephir_check_call_status();
 	zephir_fast_trim(return_value, &_5, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 	RETURN_MM();

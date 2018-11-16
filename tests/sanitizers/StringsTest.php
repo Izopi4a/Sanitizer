@@ -120,4 +120,12 @@
             $this->assertEquals($strings->getValue(), "");
         }
 
+        public function testEmptyString() {
+
+            $strings = new Strings();
+            $strings->setRawValue("");
+
+            $this->assertEquals($strings->getValue(), "");
+        }
+
     }

@@ -67,7 +67,7 @@
          */
         protected function checkMin() : bool {
 
-            return $this->min <= $this->val;
+            return $this->val <= $this->min;
         }
 
         /**

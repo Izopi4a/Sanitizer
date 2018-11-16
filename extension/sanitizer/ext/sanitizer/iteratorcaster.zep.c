@@ -12,12 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "ext/spl/spl_exceptions.h"
+#include "kernel/operators.h"
 #include "kernel/exception.h"
+#include "kernel/object.h"
 #include "kernel/array.h"
 
 
@@ -44,34 +43,50 @@ ZEPHIR_INIT_CLASS(Sanitizer_IteratorCaster) {
 
 PHP_METHOD(Sanitizer_IteratorCaster, __construct) {
 
-	zephir_fcall_cache_entry *_1 = NULL;
+	zend_bool _0;
+	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *data_param = NULL, *items_param = NULL, item$$3, *_0$$3;
-	zval data, items;
+	zval items;
+	zval *data, data_sub, *items_param = NULL, _1, item$$4, *_2$$4;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&data);
+	ZVAL_UNDEF(&data_sub);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&item$$4);
 	ZVAL_UNDEF(&items);
-	ZVAL_UNDEF(&item$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &data_param, &items_param);
+	zephir_fetch_params(1, 1, 1, &data, &items_param);
 
-	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
-	zephir_get_arrval(&items, items_param);
+	if (!items_param) {
+		ZEPHIR_INIT_VAR(&items);
+		array_init(&items);
+	} else {
+		zephir_get_arrval(&items, items_param);
+	}
 
 
-	zephir_update_property_zval(this_ptr, SL("data"), &data);
+	_0 = Z_TYPE_P(data) != IS_ARRAY;
+	if (_0) {
+		ZEPHIR_CALL_FUNCTION(&_1, "is_iterable", NULL, 1, data);
+		zephir_check_call_status();
+		_0 = zephir_is_true(&_1);
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "data must be array or other iterable", "sanitizer/IteratorCaster.zep", 18);
+		return;
+	}
+	zephir_update_property_zval(this_ptr, SL("data"), data);
 	if (!ZEPHIR_IS_STRING_IDENTICAL(&items, "")) {
-		zephir_is_iterable(&items, 0, "sanitizer/IteratorCaster.zep", 24);
-		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&items), _0$$3)
+		zephir_is_iterable(&items, 0, "sanitizer/IteratorCaster.zep", 28);
+		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&items), _2$$4)
 		{
-			ZEPHIR_INIT_NVAR(&item$$3);
-			ZVAL_COPY(&item$$3, _0$$3);
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "add", &_1, 0, &item$$3);
+			ZEPHIR_INIT_NVAR(&item$$4);
+			ZVAL_COPY(&item$$4, _2$$4);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "add", &_3, 0, &item$$4);
 			zephir_check_call_status();
 		} ZEND_HASH_FOREACH_END();
-		ZEPHIR_INIT_NVAR(&item$$3);
+		ZEPHIR_INIT_NVAR(&item$$4);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -127,7 +142,7 @@ PHP_METHOD(Sanitizer_IteratorCaster, getData) {
 	ZEPHIR_INIT_VAR(&data);
 	array_init(&data);
 	zephir_read_property(&_0, this_ptr, SL("sanitizers"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "sanitizer/IteratorCaster.zep", 68);
+	zephir_is_iterable(&_0, 0, "sanitizer/IteratorCaster.zep", 72);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&sanitizer);
@@ -142,7 +157,7 @@ PHP_METHOD(Sanitizer_IteratorCaster, getData) {
 			continue;
 		}
 		zephir_read_property(&_4$$3, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_5$$3, &_4$$3, &varName$$3, PH_NOISY | PH_READONLY, "sanitizer/IteratorCaster.zep", 64 TSRMLS_CC);
+		zephir_array_fetch(&_5$$3, &_4$$3, &varName$$3, PH_NOISY | PH_READONLY, "sanitizer/IteratorCaster.zep", 68 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, &sanitizer, "setrawvalue", NULL, 0, &_5$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_6$$3, &sanitizer, "getvalue", NULL, 0);
