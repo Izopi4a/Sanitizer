@@ -30,7 +30,7 @@
     $_POST['cb'] = [3,4,'bbdfbfd',false, null,'false'];
     $_POST['cc'] = '3.33';
 
-    $cls = new \Sanitizer\IteratorCaster($_POST, [
+    $cls = new \Sanitizer\ArrayCaster($_POST, [
         (new Integer("a"))
             ->setMinimum(2)
             ->setMaximum(10)

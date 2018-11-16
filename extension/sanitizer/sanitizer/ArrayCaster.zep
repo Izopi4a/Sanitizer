@@ -7,16 +7,12 @@ namespace Sanitizer;
  * @package Sanitizer
  */
 
-class IteratorCaster implements CasterInterface {
+class ArrayCaster implements CasterInterface {
 
     protected sanitizers = [];
     protected data = [];
 
-    public function __construct(var data, array items = null) {
-
-        if typeof data != "array" && is_iterable(data) {
-            throw new \Exception("data must be array or other iterable");
-        }
+    public function __construct(array! data, array items = null) {
 
         let this->data = data;
 

@@ -55,13 +55,13 @@ PHP_METHOD(Sanitizer_Sanitizers_Emails, getValue) {
 	ZEPHIR_INIT_VAR(&strings);
 	object_init_ex(&strings, sanitizer_sanitizers_strings_ce);
 	ZVAL_NULL(&_0);
-	ZEPHIR_CALL_METHOD(NULL, &strings, "__construct", NULL, 3, &_0);
+	ZEPHIR_CALL_METHOD(NULL, &strings, "__construct", NULL, 2, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getrawvalue", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &strings, "setrawvalue", NULL, 4, &_1);
+	ZEPHIR_CALL_METHOD(NULL, &strings, "setrawvalue", NULL, 3, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, &strings, "getvalue", NULL, 10);
+	ZEPHIR_CALL_METHOD(&_2, &strings, "getvalue", NULL, 9);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("val"), &_2);
 	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
@@ -72,7 +72,7 @@ PHP_METHOD(Sanitizer_Sanitizers_Emails, getValue) {
 	}
 	zephir_read_property(&_4, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 274);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 9, &_4, &_5);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 8, &_4, &_5);
 	zephir_check_call_status();
 	if (!zephir_is_true(&_6)) {
 		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getdefaultvalue", &_3, 0);

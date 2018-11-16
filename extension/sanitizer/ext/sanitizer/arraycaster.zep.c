@@ -27,20 +27,22 @@
  * Class Caster
  * @package Sanitizer
  */
-ZEPHIR_INIT_CLASS(Sanitizer_Caster) {
+ZEPHIR_INIT_CLASS(Sanitizer_ArrayCaster) {
 
-	ZEPHIR_REGISTER_CLASS(Sanitizer, Caster, sanitizer, caster, sanitizer_caster_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Sanitizer, ArrayCaster, sanitizer, arraycaster, sanitizer_arraycaster_method_entry, 0);
 
-	zend_declare_property_null(sanitizer_caster_ce, SL("sanitizers"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(sanitizer_arraycaster_ce, SL("sanitizers"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(sanitizer_caster_ce, SL("data"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(sanitizer_arraycaster_ce, SL("data"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	sanitizer_caster_ce->create_object = zephir_init_properties_Sanitizer_Caster;
+	sanitizer_arraycaster_ce->create_object = zephir_init_properties_Sanitizer_ArrayCaster;
+
+	zend_class_implements(sanitizer_arraycaster_ce TSRMLS_CC, 1, sanitizer_casterinterface_ce);
 	return SUCCESS;
 
 }
 
-PHP_METHOD(Sanitizer_Caster, __construct) {
+PHP_METHOD(Sanitizer_ArrayCaster, __construct) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -53,15 +55,20 @@ PHP_METHOD(Sanitizer_Caster, __construct) {
 	ZVAL_UNDEF(&item$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &data_param, &items_param);
+	zephir_fetch_params(1, 1, 1, &data_param, &items_param);
 
 	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
-	zephir_get_arrval(&items, items_param);
+	if (!items_param) {
+		ZEPHIR_INIT_VAR(&items);
+		array_init(&items);
+	} else {
+		zephir_get_arrval(&items, items_param);
+	}
 
 
 	zephir_update_property_zval(this_ptr, SL("data"), &data);
 	if (!ZEPHIR_IS_STRING_IDENTICAL(&items, "")) {
-		zephir_is_iterable(&items, 0, "sanitizer/Caster.zep", 24);
+		zephir_is_iterable(&items, 0, "sanitizer/ArrayCaster.zep", 24);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&items), _0$$3)
 		{
 			ZEPHIR_INIT_NVAR(&item$$3);
@@ -83,7 +90,7 @@ PHP_METHOD(Sanitizer_Caster, __construct) {
  *
  * @return $this
  */
-PHP_METHOD(Sanitizer_Caster, add) {
+PHP_METHOD(Sanitizer_ArrayCaster, add) {
 
 	zval *sanitizer, sanitizer_sub;
 	zval *this_ptr = getThis();
@@ -104,7 +111,7 @@ PHP_METHOD(Sanitizer_Caster, add) {
  *
  * @return array
  */
-PHP_METHOD(Sanitizer_Caster, getData) {
+PHP_METHOD(Sanitizer_ArrayCaster, getData) {
 
 	zval data, sanitizer, _0, *_1, varName$$3, _2$$3, _4$$3, _5$$3, _6$$3, _3$$4;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -125,7 +132,7 @@ PHP_METHOD(Sanitizer_Caster, getData) {
 	ZEPHIR_INIT_VAR(&data);
 	array_init(&data);
 	zephir_read_property(&_0, this_ptr, SL("sanitizers"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "sanitizer/Caster.zep", 68);
+	zephir_is_iterable(&_0, 0, "sanitizer/ArrayCaster.zep", 68);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&sanitizer);
@@ -140,7 +147,7 @@ PHP_METHOD(Sanitizer_Caster, getData) {
 			continue;
 		}
 		zephir_read_property(&_4$$3, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_5$$3, &_4$$3, &varName$$3, PH_NOISY | PH_READONLY, "sanitizer/Caster.zep", 64 TSRMLS_CC);
+		zephir_array_fetch(&_5$$3, &_4$$3, &varName$$3, PH_NOISY | PH_READONLY, "sanitizer/ArrayCaster.zep", 64 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, &sanitizer, "setrawvalue", NULL, 0, &_5$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_6$$3, &sanitizer, "getvalue", NULL, 0);
@@ -152,7 +159,7 @@ PHP_METHOD(Sanitizer_Caster, getData) {
 
 }
 
-zend_object *zephir_init_properties_Sanitizer_Caster(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Sanitizer_ArrayCaster(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
 		ZVAL_UNDEF(&_0);

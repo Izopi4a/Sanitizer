@@ -9,12 +9,12 @@
      * @package Sanitizer
      */
 
-    class IteratorCaster implements CasterInterface {
+    class ArrayCaster implements CasterInterface {
 
         protected $sanitizers = [];
         protected $data = [];
 
-        public function __construct(iterable $data, ?array $items = null) {
+        public function __construct(array $data, ?array $items = null) {
 
             $this->data = $data;
 
