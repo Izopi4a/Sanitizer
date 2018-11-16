@@ -78,7 +78,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-	ZEPHIR_CALL_FUNCTION(&_0, "array_values", NULL, 2, &v);
+	ZEPHIR_CALL_FUNCTION(&_0, "array_values", NULL, 1, &v);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&v, &_0);
 	ZEPHIR_INIT_VAR(&_1);
@@ -113,26 +113,26 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 			ZEPHIR_INIT_NVAR(&integers);
 			object_init_ex(&integers, sanitizer_sanitizers_integer_ce);
 			ZVAL_NULL(&_6$$4);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "__construct", &_7, 3, &_6$$4);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "__construct", &_7, 2, &_6$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setrawvalue", &_8, 4, &value$$4);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "setrawvalue", &_8, 3, &value$$4);
 			zephir_check_call_status();
 			ZVAL_BOOL(&_6$$4, 1);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setnullasdefault", &_9, 5, &_6$$4);
+			ZEPHIR_CALL_METHOD(NULL, &integers, "setnullasdefault", &_9, 4, &_6$$4);
 			zephir_check_call_status();
 			zephir_read_property(&_6$$4, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
 			if (Z_TYPE_P(&_6$$4) != IS_NULL) {
 				zephir_read_property(&_10$$6, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_11, 6, &_10$$6);
+				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_11, 5, &_10$$6);
 				zephir_check_call_status();
 			}
 			zephir_read_property(&_12$$4, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
 			if (Z_TYPE_P(&_12$$4) != IS_NULL) {
 				zephir_read_property(&_13$$7, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setminimum", &_14, 7, &_13$$7);
+				ZEPHIR_CALL_METHOD(NULL, &integers, "setminimum", &_14, 6, &_13$$7);
 				zephir_check_call_status();
 			}
-			ZEPHIR_CALL_METHOD(&newValues$$4, &integers, "getvalue", &_15, 8);
+			ZEPHIR_CALL_METHOD(&newValues$$4, &integers, "getvalue", &_15, 7);
 			zephir_check_call_status();
 			if (Z_TYPE_P(&newValues$$4) != IS_NULL) {
 				zephir_update_property_array_append(this_ptr, SL("val"), &newValues$$4 TSRMLS_CC);

@@ -14,7 +14,7 @@ if test "$PHP_SANITIZER" = "yes"; then
 	sanitizer/sizeinterface.zep.c
 	sanitizer/casterinterface.zep.c
 	sanitizer/lengthinterface.zep.c
-	sanitizer/iteratorcaster.zep.c
+	sanitizer/arraycaster.zep.c
 	sanitizer/sanitizers/arrayinteger.zep.c
 	sanitizer/sanitizers/booleans.zep.c
 	sanitizer/sanitizers/emails.zep.c
