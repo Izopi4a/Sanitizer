@@ -25,6 +25,7 @@ extension/sanitizer/ext/missing
 extension/sanitizer/ext/mkinstalldirs
 extension/sanitizer/ext/modules/
 extension/sanitizer/ext/run-tests.php
+extension/sanitizer/ext/configure.ac
 
 *~
 *.o
