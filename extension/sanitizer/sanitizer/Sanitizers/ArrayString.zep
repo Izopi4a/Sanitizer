@@ -3,10 +3,10 @@ namespace Sanitizer\Sanitizers;
 use Sanitizer\SanitizerInterface;
 use Sanitizer\Sanitizer;
 
-class ArrayInteger extends Sanitizer implements SanitizerInterface {
+class ArrayString extends Sanitizer implements SanitizerInterface {
 
-    protected min = null;
-    protected max = null;
+    protected minLength = null;
+    protected maxLength = null;
     /**
      * @var array
      */
@@ -23,7 +23,7 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
     public function getValue() -> array {
 
         var v = this->getRawValue(),
-            integers;
+            strings;
 
         int i, max;
 
@@ -43,21 +43,21 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
 
             var value = v[i];
 
-            let integers = new Integer();
-            integers->setRawValue(value);
-            integers->setNullAsDefault(true);
+            let strings = new Strings();
+            strings->setRawValue(value);
+            strings->setNullAsDefault(true);
 
-            if (this->max !== null) {
-                integers->setMaximum(this->max);
+            if (this->maxLength !== null) {
+                strings->setMaxLength(this->maxLength);
             }
-            if (this->min !== null) {
-                integers->setMinimum(this->min);
+            if (this->minLength !== null) {
+                strings->setMinLength(this->minLength);
             }
 
-            var newValues = integers->getValue();
+            var newValue = strings->getValue();
 
-            if (newValues !== null) {
-                let this->val[] = newValues;
+            if (newValue !== null) {
+                let this->val[] = newValue;
             }
         }
 
@@ -90,7 +90,7 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
      */
     public function setMinimum(int! min) {
 
-        let this->min = min;
+        let this->minLength = min;
 
         return this;
     }
@@ -104,7 +104,7 @@ class ArrayInteger extends Sanitizer implements SanitizerInterface {
      */
     public function setMaximum(int! max) {
 
-        let this->max = max;
+        let this->maxLength = max;
 
         return this;
     }

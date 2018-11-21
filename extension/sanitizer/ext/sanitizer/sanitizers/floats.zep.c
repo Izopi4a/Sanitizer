@@ -83,12 +83,13 @@ PHP_METHOD(Sanitizer_Sanitizers_Floats, getValue) {
 		RETURN_MM();
 	}
 	ZEPHIR_INIT_VAR(&_4);
-	ZEPHIR_CALL_FUNCTION(&_5, "floatval", NULL, 10, &v);
+	ZEPHIR_CALL_FUNCTION(&_5, "floatval", NULL, 12, &v);
 	zephir_check_call_status();
 	zephir_read_property(&_6, this_ptr, SL("maxDecimals"), PH_NOISY_CC | PH_READONLY);
 	zephir_round(&_4, &_5, &_6, NULL TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("val"), &_4);
-	zephir_read_property(&_7, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_OBS_VAR(&_7);
+	zephir_read_property(&_7, this_ptr, SL("val"), PH_NOISY_CC);
 	if (zephir_get_intval(&_7) == 0) {
 		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getdefaultvalue", &_3, 0);
 		zephir_check_call_status();
