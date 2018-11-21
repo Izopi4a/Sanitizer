@@ -14,7 +14,7 @@
 #define PHP_SANITIZER_VERSION     "0.0.1"
 #define PHP_SANITIZER_EXTNAME     "sanitizer"
 #define PHP_SANITIZER_AUTHOR      ""
-#define PHP_SANITIZER_ZEPVERSION  "0.11.4-$Id$"
+#define PHP_SANITIZER_ZEPVERSION  "0.11.6-$Id$"
 #define PHP_SANITIZER_DESCRIPTION ""
 
 

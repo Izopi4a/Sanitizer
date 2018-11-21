@@ -21,25 +21,25 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayInteger) {
+ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayString) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Sanitizer\\Sanitizers, ArrayInteger, sanitizer, sanitizers_arrayinteger, sanitizer_sanitizer_ce, sanitizer_sanitizers_arrayinteger_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Sanitizer\\Sanitizers, ArrayString, sanitizer, sanitizers_arraystring, sanitizer_sanitizer_ce, sanitizer_sanitizers_arraystring_method_entry, 0);
 
-	zend_declare_property_null(sanitizer_sanitizers_arrayinteger_ce, SL("min"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(sanitizer_sanitizers_arraystring_ce, SL("minLength"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(sanitizer_sanitizers_arrayinteger_ce, SL("max"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(sanitizer_sanitizers_arraystring_ce, SL("maxLength"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/**
 	 * @var array
 	 */
-	zend_declare_property_null(sanitizer_sanitizers_arrayinteger_ce, SL("val"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(sanitizer_sanitizers_arraystring_ce, SL("val"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/** @var int  */
-	zend_declare_property_long(sanitizer_sanitizers_arrayinteger_ce, SL("maxItems"), -1, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_long(sanitizer_sanitizers_arraystring_ce, SL("maxItems"), -1, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	sanitizer_sanitizers_arrayinteger_ce->create_object = zephir_init_properties_Sanitizer_Sanitizers_ArrayInteger;
+	sanitizer_sanitizers_arraystring_ce->create_object = zephir_init_properties_Sanitizer_Sanitizers_ArrayString;
 
-	zend_class_implements(sanitizer_sanitizers_arrayinteger_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
+	zend_class_implements(sanitizer_sanitizers_arraystring_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	return SUCCESS;
 
 }
@@ -49,23 +49,23 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayInteger) {
  *
  * @return array
  */
-PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
+PHP_METHOD(Sanitizer_Sanitizers_ArrayString, getValue) {
 
 	zend_bool _3;
-	zval v, integers, _0, _1, _2, value$$4, _8$$4, _12$$4, newValues$$4, _10$$6, _13$$7;
+	zval v, strings, _0, _1, _2, value$$4, _8$$4, _12$$4, newValue$$4, _10$$6, _13$$7;
 	zephir_fcall_cache_entry *_6 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL, *_14 = NULL, *_15 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, max = 0, _4, _5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&v);
-	ZVAL_UNDEF(&integers);
+	ZVAL_UNDEF(&strings);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&value$$4);
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_12$$4);
-	ZVAL_UNDEF(&newValues$$4);
+	ZVAL_UNDEF(&newValue$$4);
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_13$$7);
 
@@ -109,32 +109,32 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
 				break;
 			}
 			ZEPHIR_OBS_NVAR(&value$$4);
-			zephir_array_fetch_long(&value$$4, &v, i, PH_NOISY, "sanitizer/Sanitizers/ArrayInteger.zep", 44 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(&integers);
-			object_init_ex(&integers, sanitizer_sanitizers_integer_ce);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "__construct", &_6, 2);
+			zephir_array_fetch_long(&value$$4, &v, i, PH_NOISY, "sanitizer/Sanitizers/ArrayString.zep", 44 TSRMLS_CC);
+			ZEPHIR_INIT_NVAR(&strings);
+			object_init_ex(&strings, sanitizer_sanitizers_strings_ce);
+			ZEPHIR_CALL_METHOD(NULL, &strings, "__construct", &_6, 2);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setrawvalue", &_7, 3, &value$$4);
+			ZEPHIR_CALL_METHOD(NULL, &strings, "setrawvalue", &_7, 3, &value$$4);
 			zephir_check_call_status();
 			ZVAL_BOOL(&_8$$4, 1);
-			ZEPHIR_CALL_METHOD(NULL, &integers, "setnullasdefault", &_9, 4, &_8$$4);
+			ZEPHIR_CALL_METHOD(NULL, &strings, "setnullasdefault", &_9, 4, &_8$$4);
 			zephir_check_call_status();
-			zephir_read_property(&_8$$4, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_8$$4, this_ptr, SL("maxLength"), PH_NOISY_CC | PH_READONLY);
 			if (Z_TYPE_P(&_8$$4) != IS_NULL) {
-				zephir_read_property(&_10$$6, this_ptr, SL("max"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setmaximum", &_11, 5, &_10$$6);
+				zephir_read_property(&_10$$6, this_ptr, SL("maxLength"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_METHOD(NULL, &strings, "setmaxlength", &_11, 8, &_10$$6);
 				zephir_check_call_status();
 			}
-			zephir_read_property(&_12$$4, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_12$$4, this_ptr, SL("minLength"), PH_NOISY_CC | PH_READONLY);
 			if (Z_TYPE_P(&_12$$4) != IS_NULL) {
-				zephir_read_property(&_13$$7, this_ptr, SL("min"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &integers, "setminimum", &_14, 6, &_13$$7);
+				zephir_read_property(&_13$$7, this_ptr, SL("minLength"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_METHOD(NULL, &strings, "setminlength", &_14, 9, &_13$$7);
 				zephir_check_call_status();
 			}
-			ZEPHIR_CALL_METHOD(&newValues$$4, &integers, "getvalue", &_15, 7);
+			ZEPHIR_CALL_METHOD(&newValue$$4, &strings, "getvalue", &_15, 10);
 			zephir_check_call_status();
-			if (Z_TYPE_P(&newValues$$4) != IS_NULL) {
-				zephir_update_property_array_append(this_ptr, SL("val"), &newValues$$4 TSRMLS_CC);
+			if (Z_TYPE_P(&newValue$$4) != IS_NULL) {
+				zephir_update_property_array_append(this_ptr, SL("val"), &newValue$$4 TSRMLS_CC);
 			}
 		}
 	}
@@ -151,7 +151,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getValue) {
  *
  * @return this
  */
-PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMaxItems) {
+PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMaxItems) {
 
 	zval *maxItems_param = NULL, _0;
 	zend_long maxItems;
@@ -182,7 +182,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMaxItems) {
  *
  * @return this
  */
-PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMinimum) {
+PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMinimum) {
 
 	zval *min_param = NULL, _0;
 	zend_long min;
@@ -201,7 +201,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMinimum) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, min);
-	zephir_update_property_zval(this_ptr, SL("min"), &_0);
+	zephir_update_property_zval(this_ptr, SL("minLength"), &_0);
 	RETURN_THISW();
 
 }
@@ -213,7 +213,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMinimum) {
  *
  * @return this
  */
-PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMaximum) {
+PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMaximum) {
 
 	zval *max_param = NULL, _0;
 	zend_long max;
@@ -232,7 +232,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMaximum) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, max);
-	zephir_update_property_zval(this_ptr, SL("max"), &_0);
+	zephir_update_property_zval(this_ptr, SL("maxLength"), &_0);
 	RETURN_THISW();
 
 }
@@ -242,7 +242,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, setMaximum) {
  *
  * @return array|null
  */
-PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getDefaultValue) {
+PHP_METHOD(Sanitizer_Sanitizers_ArrayString, getDefaultValue) {
 
 	zval *this_ptr = getThis();
 
@@ -252,7 +252,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayInteger, getDefaultValue) {
 
 }
 
-zend_object *zephir_init_properties_Sanitizer_Sanitizers_ArrayInteger(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Sanitizer_Sanitizers_ArrayString(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
 		ZVAL_UNDEF(&_0);

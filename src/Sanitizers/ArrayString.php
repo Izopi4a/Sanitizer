@@ -5,10 +5,10 @@
     use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class ArrayInteger extends Sanitizer implements SanitizerInterface {
+    class ArrayString extends Sanitizer implements SanitizerInterface {
 
-        protected $min = null;
-        protected $max = null;
+        protected $minLength = null;
+        protected $maxLength = null;
         /**
          * @var array
          */
@@ -41,21 +41,21 @@
 
                 $value = $v[$i];
 
-                $integers = new Integer(null);
-                $integers->setRawValue($value);
-                $integers->setNullAsDefault(true);
+                $strings = new Strings();
+                $strings->setRawValue($value);
+                $strings->setNullAsDefault(true);
 
-                if ($this->max !== null) {
-                    $integers->setMaximum($this->max);
+                if ($this->maxLength !== null) {
+                    $strings->setMaxLength($this->maxLength);
                 }
-                if ($this->min !== null) {
-                    $integers->setMinimum($this->min);
+                if ($this->minLength !== null) {
+                    $strings->setMinLength($this->minLength);
                 }
 
-                $newValues = $integers->getValue();
+                $newValue = $strings->getValue();
 
-                if ($newValues !== null) {
-                    $this->val[] = $newValues;
+                if ($newValue !== null) {
+                    $this->val[] = $newValue;
                 }
             }
 
@@ -87,7 +87,7 @@
          */
         public function setMinimum(int $min) {
 
-            $this->min = $min;
+            $this->minLength = $min;
 
             return $this;
         }
@@ -101,7 +101,7 @@
          */
         public function setMaximum(int $max) {
 
-            $this->max = $max;
+            $this->maxLength = $max;
 
             return $this;
         }

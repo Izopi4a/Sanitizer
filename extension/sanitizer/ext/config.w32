@@ -10,8 +10,8 @@ if (PHP_SANITIZER != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/sanitizer", "sanitizer.zep.c sanitizerinterface.zep.c sizeinterface.zep.c casterinterface.zep.c lengthinterface.zep.c arraycaster.zep.c", "sanitizer");
-	ADD_SOURCES(configure_module_dirname + "/sanitizer/sanitizers", "arrayinteger.zep.c booleans.zep.c emails.zep.c floats.zep.c integer.zep.c strings.zep.c", "sanitizer");
+  ADD_SOURCES(configure_module_dirname + "/sanitizer", "sanitizer.zep.c sanitizerinterface.zep.c lengthinterface.zep.c sizeinterface.zep.c casterinterface.zep.c arraycaster.zep.c", "sanitizer");
+	ADD_SOURCES(configure_module_dirname + "/sanitizer/sanitizers", "arrayinteger.zep.c arraystring.zep.c booleans.zep.c emails.zep.c floats.zep.c integer.zep.c password.zep.c strings.zep.c", "sanitizer");
   ADD_FLAG("CFLAGS_SANITIZER", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("LDFLAGS", "/LTCG");

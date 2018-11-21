@@ -69,7 +69,7 @@ PHP_METHOD(Sanitizer_Sanitizers_Booleans, getValue) {
 	if (Z_TYPE_P(&v) == IS_STRING) {
 		ZVAL_LONG(&_2$$7, 258);
 		ZVAL_LONG(&_3$$7, 134217728);
-		ZEPHIR_CALL_FUNCTION(&b$$7, "filter_var", NULL, 8, &v, &_2$$7, &_3$$7);
+		ZEPHIR_CALL_FUNCTION(&b$$7, "filter_var", NULL, 11, &v, &_2$$7, &_3$$7);
 		zephir_check_call_status();
 		if (Z_TYPE_P(&b$$7) == IS_NULL) {
 			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getdefaultvalue", &_1, 0);
