@@ -1,9 +1,8 @@
 namespace Sanitizer\Sanitizers;
 
-use Sanitizer\SanitizerInterface;
 use Sanitizer\Sanitizer;
 
-class Emails extends Sanitizer implements SanitizerInterface {
+class Emails extends Sanitizer {
 
     /** @var string  */
     protected val = "";

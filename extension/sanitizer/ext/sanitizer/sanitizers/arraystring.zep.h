@@ -18,15 +18,27 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_sanitizer_sanitizers_arraystring
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizers_arraystring_setmaxitems, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, maxItems, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, maxItems)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizers_arraystring_setminimum, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, min, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, min)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizers_arraystring_setmaximum, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, max, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, max)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

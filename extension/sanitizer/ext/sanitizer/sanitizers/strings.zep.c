@@ -32,7 +32,6 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_Strings) {
 
 	zend_declare_property_string(sanitizer_sanitizers_strings_ce, SL("val"), "", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_class_implements(sanitizer_sanitizers_strings_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	zend_class_implements(sanitizer_sanitizers_strings_ce TSRMLS_CC, 1, sanitizer_lengthinterface_ce);
 	return SUCCESS;
 
@@ -140,7 +139,7 @@ PHP_METHOD(Sanitizer_Sanitizers_Strings, trim) {
 	zephir_fetch_params(1, 1, 0, &value_param);
 
 	if (UNEXPECTED(Z_TYPE_P(value_param) != IS_STRING && Z_TYPE_P(value_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'value' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'value' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(value_param) == IS_STRING)) {

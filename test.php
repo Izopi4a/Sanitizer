@@ -9,6 +9,7 @@
     use Sanitizer\Sanitizers\ArrayInteger;
     use Sanitizer\Sanitizers\Floats;
     use Sanitizer\Sanitizers\ArrayString;
+    use Sanitizer\Sanitizers\Date;
 
     $_POST['a'] = 2;
     $_POST['b'] = "asdssf11f";
@@ -31,6 +32,9 @@
     $_POST['cb'] = [3,4,'bbdfbfd',false, null,'false'];
     $_POST['cc'] = '3.33';
     $_POST['ee'] = ['aaaa','bbbb', 'ccc'];
+    $_POST['fa'] = "2018-10-22";
+    $_POST['fb'] = "22-10-2018";
+    $_POST['fc'] = "fdsfs";
 
     $cls = new \Sanitizer\ArrayCaster($_POST, [
         (new Integer("a"))
@@ -48,6 +52,9 @@
         (new ArrayInteger("cb"))->setMaxItems(1),
         (new ArrayInteger("cc")),
         (new ArrayString("ee")),
+        (new Date("fa"))->setReadFormat("Y-m-d", true),
+        (new Date("fb"))->setReadFormat("d-m-Y", true)->setReturnAsObject(true),
+        (new Date("fc"))->setReadFormat("Y-m-d", true),
     ]);
 
     echo PHP_EOL;

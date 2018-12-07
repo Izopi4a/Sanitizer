@@ -4,7 +4,11 @@ extern zend_class_entry *sanitizer_sanitizerinterface_ce;
 ZEPHIR_INIT_CLASS(Sanitizer_SanitizerInterface);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizerinterface___construct, 0, 0, 0)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, variableName, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, variableName)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

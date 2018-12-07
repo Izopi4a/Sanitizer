@@ -10,7 +10,11 @@ PHP_METHOD(Sanitizer_Sanitizer, setRawValue);
 PHP_METHOD(Sanitizer_Sanitizer, getRawValue);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizer___construct, 0, 0, 0)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, variableName, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, variableName)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
@@ -21,7 +25,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_sanitizer_sanitizer_getvariablen
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizer_setnullasdefault, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, state, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, state)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_sanitizer_sanitizer_setrawvalue, 0, 0, 1)

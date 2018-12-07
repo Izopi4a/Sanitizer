@@ -2,10 +2,9 @@
 
     namespace Sanitizer\Sanitizers;
 
-    use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class Booleans extends Sanitizer implements SanitizerInterface {
+    class Booleans extends Sanitizer {
 
         protected $val = false;
 

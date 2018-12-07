@@ -1,6 +1,6 @@
 namespace Sanitizer;
 
-abstract class Sanitizer {
+abstract class Sanitizer implements SanitizerInterface {
 
     /** @var bool */
     protected nullAsDefault = false;

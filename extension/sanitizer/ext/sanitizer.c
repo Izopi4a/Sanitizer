@@ -32,6 +32,7 @@ zend_class_entry *sanitizer_arraycaster_ce;
 zend_class_entry *sanitizer_sanitizers_arrayinteger_ce;
 zend_class_entry *sanitizer_sanitizers_arraystring_ce;
 zend_class_entry *sanitizer_sanitizers_booleans_ce;
+zend_class_entry *sanitizer_sanitizers_date_ce;
 zend_class_entry *sanitizer_sanitizers_emails_ce;
 zend_class_entry *sanitizer_sanitizers_floats_ce;
 zend_class_entry *sanitizer_sanitizers_integer_ce;
@@ -57,6 +58,7 @@ static PHP_MINIT_FUNCTION(sanitizer)
 	ZEPHIR_INIT(Sanitizer_Sanitizers_ArrayInteger);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_ArrayString);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Booleans);
+	ZEPHIR_INIT(Sanitizer_Sanitizers_Date);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Emails);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Floats);
 	ZEPHIR_INIT(Sanitizer_Sanitizers_Integer);

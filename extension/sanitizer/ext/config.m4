@@ -9,8 +9,8 @@ if test "$PHP_SANITIZER" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_SANITIZER, 1, [Whether you have Sanitizer])
-	sanitizer_sources="sanitizer.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c sanitizer/sanitizer.zep.c
-	sanitizer/sanitizerinterface.zep.c
+	sanitizer_sources="sanitizer.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c sanitizer/sanitizerinterface.zep.c
+	sanitizer/sanitizer.zep.c
 	sanitizer/lengthinterface.zep.c
 	sanitizer/sizeinterface.zep.c
 	sanitizer/casterinterface.zep.c
@@ -18,6 +18,7 @@ if test "$PHP_SANITIZER" = "yes"; then
 	sanitizer/sanitizers/arrayinteger.zep.c
 	sanitizer/sanitizers/arraystring.zep.c
 	sanitizer/sanitizers/booleans.zep.c
+	sanitizer/sanitizers/date.zep.c
 	sanitizer/sanitizers/emails.zep.c
 	sanitizer/sanitizers/floats.zep.c
 	sanitizer/sanitizers/integer.zep.c
