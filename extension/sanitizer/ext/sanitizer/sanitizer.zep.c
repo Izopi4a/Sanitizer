@@ -29,6 +29,7 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizer) {
 	/** @var string  */
 	zend_declare_property_string(sanitizer_sanitizer_ce, SL("variableName"), "", ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_class_implements(sanitizer_sanitizer_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	return SUCCESS;
 
 }

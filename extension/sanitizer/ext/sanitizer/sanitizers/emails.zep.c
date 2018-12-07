@@ -25,7 +25,6 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_Emails) {
 	/** @var string  */
 	zend_declare_property_string(sanitizer_sanitizers_emails_ce, SL("val"), "", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_class_implements(sanitizer_sanitizers_emails_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	return SUCCESS;
 
 }

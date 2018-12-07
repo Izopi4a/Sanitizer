@@ -3,10 +3,9 @@
     namespace Sanitizer\Sanitizers;
 
     use Sanitizer\LengthInterface;
-    use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class Password extends Sanitizer implements SanitizerInterface, LengthInterface {
+    class Password extends Sanitizer implements LengthInterface {
 
         protected $minLength = null;
         protected $maxLength = null;

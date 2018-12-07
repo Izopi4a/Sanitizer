@@ -1,10 +1,9 @@
 namespace Sanitizer\Sanitizers;
 
-use Sanitizer\SanitizerInterface;
 use Sanitizer\SizeInterface;
 use Sanitizer\Sanitizer;
 
-class Floats extends Sanitizer implements SanitizerInterface, SizeInterface {
+class Floats extends Sanitizer implements SizeInterface {
 
     protected min = null;
     protected max = null;

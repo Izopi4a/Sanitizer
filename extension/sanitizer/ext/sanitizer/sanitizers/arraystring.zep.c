@@ -38,8 +38,6 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_ArrayString) {
 	zend_declare_property_long(sanitizer_sanitizers_arraystring_ce, SL("maxItems"), -1, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	sanitizer_sanitizers_arraystring_ce->create_object = zephir_init_properties_Sanitizer_Sanitizers_ArrayString;
-
-	zend_class_implements(sanitizer_sanitizers_arraystring_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	return SUCCESS;
 
 }
@@ -109,7 +107,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayString, getValue) {
 				break;
 			}
 			ZEPHIR_OBS_NVAR(&value$$4);
-			zephir_array_fetch_long(&value$$4, &v, i, PH_NOISY, "sanitizer/Sanitizers/ArrayString.zep", 44 TSRMLS_CC);
+			zephir_array_fetch_long(&value$$4, &v, i, PH_NOISY, "sanitizer/Sanitizers/ArrayString.zep", 43 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(&strings);
 			object_init_ex(&strings, sanitizer_sanitizers_strings_ce);
 			ZEPHIR_CALL_METHOD(NULL, &strings, "__construct", &_6, 2);
@@ -162,7 +160,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMaxItems) {
 	zephir_fetch_params(0, 1, 0, &maxItems_param);
 
 	if (UNEXPECTED(Z_TYPE_P(maxItems_param) != IS_LONG)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'maxItems' must be a int") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'maxItems' must be of the type int") TSRMLS_CC);
 		RETURN_NULL();
 	}
 	maxItems = Z_LVAL_P(maxItems_param);
@@ -193,7 +191,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMinimum) {
 	zephir_fetch_params(0, 1, 0, &min_param);
 
 	if (UNEXPECTED(Z_TYPE_P(min_param) != IS_LONG)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'min' must be a int") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'min' must be of the type int") TSRMLS_CC);
 		RETURN_NULL();
 	}
 	min = Z_LVAL_P(min_param);
@@ -224,7 +222,7 @@ PHP_METHOD(Sanitizer_Sanitizers_ArrayString, setMaximum) {
 	zephir_fetch_params(0, 1, 0, &max_param);
 
 	if (UNEXPECTED(Z_TYPE_P(max_param) != IS_LONG)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'max' must be a int") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'max' must be of the type int") TSRMLS_CC);
 		RETURN_NULL();
 	}
 	max = Z_LVAL_P(max_param);

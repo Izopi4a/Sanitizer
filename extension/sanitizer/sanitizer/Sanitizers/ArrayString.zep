@@ -1,9 +1,8 @@
 namespace Sanitizer\Sanitizers;
 
-use Sanitizer\SanitizerInterface;
 use Sanitizer\Sanitizer;
 
-class ArrayString extends Sanitizer implements SanitizerInterface {
+class ArrayString extends Sanitizer {
 
     protected minLength = null;
     protected maxLength = null;

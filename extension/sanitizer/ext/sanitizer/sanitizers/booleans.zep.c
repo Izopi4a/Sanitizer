@@ -24,7 +24,6 @@ ZEPHIR_INIT_CLASS(Sanitizer_Sanitizers_Booleans) {
 
 	zend_declare_property_bool(sanitizer_sanitizers_booleans_ce, SL("val"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_class_implements(sanitizer_sanitizers_booleans_ce TSRMLS_CC, 1, sanitizer_sanitizerinterface_ce);
 	return SUCCESS;
 
 }

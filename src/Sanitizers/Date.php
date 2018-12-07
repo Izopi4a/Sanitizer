@@ -2,10 +2,9 @@
 
     namespace Sanitizer\Sanitizers;
 
-    use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class Date extends Sanitizer implements SanitizerInterface {
+    class Date extends Sanitizer {
 
         /**
          * @var string
@@ -36,6 +35,26 @@
          * @var bool
          */
         protected $returnAsTimestamp = false;
+
+        /**
+         * @var bool
+         */
+        protected $manualTime = false;
+
+        /**
+         * @var int
+         */
+        protected $hour = 0;
+
+        /**
+         * @var int
+         */
+        protected $minute = 0;
+
+        /**
+         * @var int
+         */
+        protected $second = 0;
 
         /**
          * returns formatted value
@@ -90,6 +109,28 @@
         }
 
         /**
+         * sets the time of returned object
+         * useful when post contains from -to
+         * than you can set from 00:00:01 to 23.:59:59
+         *
+         * @param int|null $hours
+         * @param int|null $minutes
+         * @param int|null $seconds
+         *
+         * @return $this
+         */
+        public function setTimeChange(?int $hours = 0, ?int $minutes = 0, ?int $seconds = 0) {
+
+            $this->hour = $hours;
+            $this->minute = $minutes;
+            $this->second = $seconds;
+
+            $this->manualTime = true;
+
+            return $this;
+        }
+
+        /**
          * when returning a value, if it is valid
          * \DateTime object will be returned instead of formatted string date
          *
@@ -124,6 +165,10 @@
                 $date = \DateTime::createFromFormat($this->readFormat, $value);
             }
 
+            if ($date && $this->manualTime === true) {
+                $date = $date->setTime($this->hour, $this->minute, $this->second);
+            }
+
             if (false === $date) {
                 return null;
             }
@@ -137,6 +182,7 @@
          * @return $this
          */
         public function setTimeZone(\DateTimeZone $zone) {
+
             $this->timeZone = $zone;
 
             return $this;

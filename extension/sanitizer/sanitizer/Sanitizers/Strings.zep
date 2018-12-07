@@ -1,10 +1,9 @@
 namespace Sanitizer\Sanitizers;
 
-use Sanitizer\SanitizerInterface;
 use Sanitizer\LengthInterface;
 use Sanitizer\Sanitizer;
 
-class Strings extends Sanitizer implements SanitizerInterface, LengthInterface {
+class Strings extends Sanitizer implements  LengthInterface {
 
     protected minLength = null;
     protected maxLength = null;

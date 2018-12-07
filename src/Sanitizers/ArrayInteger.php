@@ -2,10 +2,9 @@
 
     namespace Sanitizer\Sanitizers;
 
-    use Sanitizer\SanitizerInterface;
     use Sanitizer\Sanitizer;
 
-    class ArrayInteger extends Sanitizer implements SanitizerInterface {
+    class ArrayInteger extends Sanitizer {
 
         protected $min = null;
         protected $max = null;
