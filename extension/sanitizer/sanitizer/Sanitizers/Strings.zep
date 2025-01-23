@@ -50,8 +50,6 @@ class Strings extends Sanitizer implements  LengthInterface {
 
         let value = str_replace(["\\", "\"", "'"], "", value);
 
-        let value = filter_var(value, FILTER_SANITIZE_STRING);
-
         return trim(strip_tags(value));
     }
 
